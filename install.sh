@@ -24,7 +24,7 @@ sudo npm install || { echo "Failed to install Node.js dependencies"; exit 1; }
 # Configure and start your Node.js application
 # Consider using pm2 or another process manager for a production environment
 echo "Starting Node.js application..."
-nohup node server.js & || { echo "Failed to start Node.js application"; exit 1; }
+nohup node server.js || { echo "Failed to start Node.js application"; exit 1; }
 
 # Ask if the user wants to set up a domain name for nginx
 echo "Do you wish to set up a domain name for Nginx? (y/n)"
