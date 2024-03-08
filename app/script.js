@@ -69,7 +69,16 @@ document.getElementById('upload-button').addEventListener('click', function() {
 document.getElementById('submit-prompt').addEventListener('click', function() {
     const promptContent = document.getElementById('prompt-input').value.trim();
     if (promptContent) {
-        // Include code to send the prompt content to your backend here
+        fetch('/api/ask', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ prompt: promptContent })
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
     } else {
         alert('Please enter a prompt.');
     }
