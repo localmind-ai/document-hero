@@ -5,7 +5,7 @@
 output_file="extracted_code.md"
 
 # Start the Markdown file with an introductory line
-echo "This is some code from a web application:" > "$output_file"
+echo "# Relevant Code Snippets \nThese are the relevant code snippets of the web application." > "$output_file"
 
 # Function to add a file's content to the Markdown file
 add_to_markdown() {
@@ -13,7 +13,7 @@ add_to_markdown() {
     local file_name=$2
     
     # Add a header for the file
-    echo -e "\nThis is the $file_type file named $file_name ($file_type is the filetype in large letters, and $file_name is the file name):\n" >> "$output_file"
+    echo -e "\nThis is a $file_type file with name and path $file_name:\n" >> "$output_file"
     
     # Add the file's contents in a Markdown code block
     echo '```' >> "$output_file"
@@ -23,7 +23,7 @@ add_to_markdown() {
 }
 
 # Find all HTML, JS, and CSS files and process them
-find . -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" \) | while read -r file_name; do
+find ../ -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" -o -name "*.ts" -o -name "*.tsx" \) | while read -r file_name; do
     case $file_name in
         *.html)
             add_to_markdown "HTML" "$file_name"
@@ -33,6 +33,12 @@ find . -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" \) | while rea
             ;;
         *.css)
             add_to_markdown "CSS" "$file_name"
+            ;;
+        *.ts)
+            add_to_markdown "TS" "$file_name"
+            ;;
+        *.tsx)
+            add_to_markdown "TSX" "$file_name"
             ;;
     esac
 done
