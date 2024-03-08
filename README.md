@@ -11,4 +11,4 @@ Clone this repository and run `install.sh`
 # Coming soon
 ```
 ## License
-Free for private use, please [contact us](mailto:hello@localmind.ai?subject=Document%20Hero%20Commercial%20Use&body=I%20would%20like%20to%20know%20more%20about%20the%20pricing%20and%20conditions%20for%20commercial%20use.) for commercial use.
+Free for personal use, please [contact us at hello@localmind.ai](mailto:hello@localmind.ai?subject=Document%20Hero%20Commercial%20Use&body=Hello,%0A%0AI'd%20like%20to%20know%20more%20about%20the%20pricing%20and%20conditions%20for%20commercial%20use.%20%0A) for commercial use.
