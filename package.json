@@ -1,0 +1,27 @@
+{
+  "name": "document-hero",
+  "version": "0.1.0",
+  "description": "An AI-assisted document analyzer made for large files with lots of pages. Made by Localmind.ai",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/localmind-ai/document-hero.git"
+  },
+  "keywords": [
+    "ai document analyzer",
+    "ai document search",
+    "ai document analysis",
+    "ai large documents",
+    "rag for large documents"
+  ],
+  "author": "Localmind GmbH",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/localmind-ai/document-hero/issues"
+  },
+  "homepage": "https://github.com/localmind-ai/document-hero#readme"
+}
