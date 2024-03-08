@@ -1,14 +1,11 @@
 #!/bin/bash
+cd app
 sudo apt update -y
 
 # Install Node.js v20.x
-echo "Installing Node.js version 20.x..."
+echo "Installing Node.js 20..."
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - || { echo "Failed to download Node.js setup"; exit 1; }
 sudo apt-get install -y nodejs || { echo "Failed to install Node.js"; exit 1; }
-
-# Install nginx
-echo "Installing Nginx..."
-sudo apt install -y nginx || { echo "Failed to install Nginx"; exit 1; }
 
 # Set up environment variables (adjust them as necessary)
 echo "Setting up environment variables..."
@@ -16,15 +13,15 @@ echo "PORT=3000" > .env
 echo "Please enter your OpenAI API key (input will be hidden for privacy):"
 read -s OPENAI_API_KEY # The -s flag hides API key input for privacy
 echo "OPENAI_API_KEY=${OPENAI_API_KEY}" >> .env
-
+echo "Thanks. You can edit the key later in the .env file in the /app folder of Document Hero."
 # Install your Node.js project dependencies
 echo "Installing Node.js dependencies..."
 sudo npm install || { echo "Failed to install Node.js dependencies"; exit 1; }
 
 # Configure and start your Node.js application
 # Consider using pm2 or another process manager for a production environment
-echo "Starting Node.js application..."
-nohup node server.js || { echo "Failed to start Node.js application"; exit 1; }
+# echo "Starting Node.js application..."
+# nohup node server.js || { echo "Failed to start Node.js application"; exit 1; }
 
 # Ask if the user wants to set up a domain name for nginx
 echo "Do you wish to set up a domain name for Nginx? (y/n)"
@@ -34,6 +31,10 @@ if [ "$SETUP_DOMAIN" = "y" ]; then
     # Ask for the domain name
     echo "Enter your domain name:"
     read DOMAIN_NAME
+    
+    # Install nginx
+    echo "Installing Nginx..."
+    sudo apt install -y nginx || { echo "Failed to install Nginx"; exit 1; }
 
     # Set up Nginx server block
     echo "Configuring Nginx..."
