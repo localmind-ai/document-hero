@@ -2,11 +2,11 @@
 An AI-powered analysis tool for large douments with lots of pages.
 ## Installation
 Clone this repository and run `start.sh`
-### Linux
+### Linux & Mac
 ```
 ./start.sh
 ```
-### Mac
+### Windows
 ```
-./start.sh
+# Coming soon
 ```
