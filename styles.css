@@ -1,0 +1,91 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif; /* Cleaner, more universal font */
+    background-color: #f8f9fa; /* Lighter background for a fresher look */
+    color: #212529; /* Darker color for better readability */
+    line-height: 1.5;
+    font-size: 14px; /* Slightly reduced for modern aesthetics */
+}
+
+#upload-area {
+    text-align: center;
+    padding: 30px 20px 30px 20px;
+    margin-bottom:10px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eaeaea; /* Lighter, subtler borders */
+}
+
+#navigation-controls {
+    text-align: center;
+    padding: 10px 20px 10px 20px;
+    margin-bottom: 10px;
+    background-color: #dfdfdf;
+    border-bottom: 1px solid #eaeaea; /* Lighter, subtler borders */
+}
+
+#pdf-viewer, #prompt-area {
+    float: left;
+    width: calc(50% - 20px); /* Adjusting width for internal padding */
+    height: calc(100vh - 102px); /* Adjusted for updated header/footer height */
+    margin: 10px; /* Add some space around elements */
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Softer shadow for depth */
+    overflow-y: auto; /* Ensure content is scrollable */
+    position: relative; /* For absolute positioning inside */
+    border-radius: 20px; /* Rounded corners for a softer look */
+}
+
+#prompt-input, #prev-page, #next-page, #submit-prompt, #upload-button {
+    border-radius: 20px; /* More pronounced rounded corners */
+    border: 1px solid #eaeaea; /* Subtle borders */
+    padding: 12px 24px; /* Increased padding for better ergonomics */
+    font-size: 15px; /* Increased font size for readability */
+    margin: 5px; /* Spacing out buttons */
+    background-color: #ffffff; /* Cleaner look */
+    color: #212529; /* Ensuring text is readable */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04); /* Softer, more ambient shadow */
+}
+
+#submit-prompt, #upload-button {
+    background-color: #007bff; /* Brighter, more inviting button color */
+    color: white; /* White text for contrast */
+    font-weight: bold; /* Make button text stand out */
+}
+
+#submit-prompt:hover, #upload-button:hover, #prev-page:hover, #next-page:hover {
+    background-color: #0056b3; /* Darker shade on hover for visual feedback */
+    color: white; /* Maintain text visibility */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Deeper shadow for 'lift' effect */
+}
+
+#page-info {
+    font-size: 16px; /* Slightly larger for visibility */
+    color: #6c757d; /* Softened color for non-dominant elements */
+}
+
+/* Specific adjustments for better alignment with the music streaming interface aesthetics
+#pdf-viewer {
+    float: none;
+    width: calc(100% - 40px);
+    margin: 20px auto;
+    display: block;
+}
+
+#prompt-area {
+    float: none;
+    width: calc(50% - 40px);
+    margin: 20px auto;
+    display: block;
+}
+*/
+
+/* Improvements for mobile responsiveness (Consider adding media queries) */
+@media screen and (max-width: 768px) {
+    #pdf-viewer, #prompt-area {
+        width: calc(100% - 20px); /* Full width on smaller screens */
+        margin: 10px;
+        height: auto; /* Adjust height for mobile devices */
+    }
+}
