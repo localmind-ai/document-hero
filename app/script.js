@@ -13,13 +13,11 @@ const pageInfo = document.getElementById('page-info');
 
 function renderPage(num) {
     pageRendering = true;
-    // Using promise to fetch the page
     pdfDoc.getPage(num).then(function(page) {
-        var viewport = page.getViewport({ scale: 1.5 }); // Adjusted scale for better visibility
+        var viewport = page.getViewport({ scale: 1.5 }); 
         canvas.height = viewport.height;
         canvas.width = viewport.width;
 
-        // Render PDF page into canvas context
         var renderContext = {
             canvasContext: ctx,
             viewport: viewport
@@ -29,13 +27,17 @@ function renderPage(num) {
             pageRendering = false;
             pageInfo.textContent = `Page: ${num}/${pdfDoc.numPages}`;
             if (pageNumPending !== null) {
-                // New page rendering is pending
                 renderPage(pageNumPending);
                 pageNumPending = null;
             }
+        }).catch(function(error) {
+            console.log('Error during page rendering: ', error);
         });
+    }).catch(function(error) {
+        console.log('Error fetching the page: ', error);
     });
 }
+
 
 // Load and render a local PDF document
 // pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
