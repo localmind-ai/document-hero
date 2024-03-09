@@ -1,5 +1,5 @@
 #!/bin/bash
-# This script extracts the contents of HTML, JS and CSS files into a nicely formatted Markdown text, so that it can be further processed by LLMs (which can be useful for AI-assisted debugging & QA).
+# This script extracts the contents of HTML, JS, and CSS files into a nicely formatted Markdown text, so that it can be further processed by LLMs (which can be useful for AI-assisted debugging & QA).
 
 # Name of the output Markdown file
 output_file="extracted_code.md"
@@ -11,10 +11,10 @@ echo "# Relevant Code Snippets \nThese are the relevant code snippets of the web
 add_to_markdown() {
     local file_type=$1
     local file_name=$2
-    
+
     # Add a header for the file
-    echo -e "\nThis is a $file_type file with name and path $file_name:\n" >> "$output_file"
-    
+    echo -e "File Name and File Path: $file_name\nFile Type: $file_type\n" >> "$output_file"
+
     # Add the file's contents in a Markdown code block
     echo '```' >> "$output_file"
     cat "$file_name" >> "$output_file"
@@ -22,8 +22,8 @@ add_to_markdown() {
     echo >> "$output_file"
 }
 
-# Find all HTML, JS, and CSS files and process them
-find ../ -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" -o -name "*.ts" -o -name "*.tsx" \) | while read -r file_name; do
+# Find all HTML, JS, and CSS files, ignoring the node_modules and helpers directories, and process them
+find ../ -type d \( -name "node_modules" -o -name "helpers" \) -prune -o -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" -o -name "*.ts" -o -name "*.tsx" \) -print | while read -r file_name; do
     case $file_name in
         *.html)
             add_to_markdown "HTML" "$file_name"
