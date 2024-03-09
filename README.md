@@ -1,7 +1,7 @@
 # Document Hero
 An AI-powered analysis tool for large douments with lots of pages. 
 # ⚠️ Work in Progress 
-This application is currently work-in-progress. Consider it useless, unless this message is removed! :)
+This application is currently work-in-progress and NOT finished software. Consider it **useless**, unless this message is removed! :)
 ## Installation
 Clone this repository and run `install.sh`
 ### Linux & Mac
