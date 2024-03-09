@@ -5,7 +5,8 @@
 output_file="extracted_code.md"
 
 # Start the Markdown file with an introductory line
-echo "# Relevant Code Snippets \nThis is the full code of my web application." > "$output_file"
+echo "# Relevant Code Snippets" > "$output_file"
+echo "This is the full code of my web application." >> "$output_file"
 
 # Function to add a file's content to the Markdown file
 add_to_markdown() {
