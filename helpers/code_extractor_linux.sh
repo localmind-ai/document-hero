@@ -5,7 +5,7 @@
 output_file="extracted_code.md"
 
 # Start the Markdown file with an introductory line
-echo "# Relevant Code Snippets \nThese are the relevant code snippets of the web application." > "$output_file"
+echo "# Relevant Code Snippets \nThis is the full code of my web application." > "$output_file"
 
 # Function to add a file's content to the Markdown file
 add_to_markdown() {
@@ -13,7 +13,7 @@ add_to_markdown() {
     local file_name=$2
 
     # Add a header for the file
-    echo -e "File Name and File Path: $file_name\nFile Type: $file_type\n" >> "$output_file"
+    echo -e "## File Name and Path: $file_name\n## File Type: $file_type\n" >> "$output_file"
 
     # Add the file's contents in a Markdown code block
     echo '```' >> "$output_file"
