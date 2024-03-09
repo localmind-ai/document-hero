@@ -25,7 +25,7 @@ add_to_markdown() {
 }
 
 # Find all HTML, JS, and CSS files, ignoring the node_modules and helpers directories, and process them
-find ../ -type d \( -name "node_modules" -o -name "helpers" -o -name "app/pdfjs" \) -prune -o -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" -o -name "*.ts" -o -name "*.tsx" \) -print | while read -r file_name; do
+find ../ -type d \( -name "node_modules" -o -name "helpers" \) -prune -o -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" -o -name "*.ts" -o -name "*.tsx" \) -print | while read -r file_name; do
     case $file_name in
         *.html)
             add_to_markdown "HTML" "$file_name"
