@@ -17,18 +17,19 @@ fi
 # Set up environment variables (adjust them as necessary)
 echo "Setting up environment variables..."
 echo "PORT=3000" > .env
-echo "Please enter your OpenAI API key (input will be hidden for privacy):"
-read -s OPENAI_API_KEY # The -s flag hides API key input for privacy
-echo "OPENAI_API_KEY=${OPENAI_API_KEY}" >> .env
-echo "Thanks. You can edit the key later in the .env file in the /app folder of Document Hero."
+# Check if OpenAI API key is already set
+if grep -q "OPENAI_API_KEY" .env; then
+    echo "OpenAI API key is already set. Skipping..."
+else
+    echo "Please enter your OpenAI API key (input will be hidden for privacy):"
+    read -s OPENAI_API_KEY # The -s flag hides API key input for privacy
+    echo "OPENAI_API_KEY=${OPENAI_API_KEY}" >> .env
+    echo "Thanks. You can edit the key later in the .env file in the /app folder of Document Hero."
+fi
+
 # Install your Node.js project dependencies
 echo "Installing Node.js dependencies..."
 sudo npm install || { echo "Failed to install Node.js dependencies"; exit 1; }
-
-# Configure and start your Node.js application
-# Consider using pm2 or another process manager for a production environment
-# echo "Starting Node.js application..."
-# nohup node server.js || { echo "Failed to start Node.js application"; exit 1; }
 
 # Ask if the user wants to set up a domain name for nginx
 echo "Do you wish to set up a web server and domain with Nginx? (y/n)"
