@@ -38,28 +38,28 @@ function renderPage(num) {
     });
 }
 
-
-// Load and render a local PDF document
-// pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
-//     pdfDoc = pdfDoc_;
-//     renderPage(pageNum);
-// }).catch(function(error) {
-//     console.log('Error loading PDF: ', error);
-// });
-
 // Upload and render the PDF document
 document.getElementById('upload-button').addEventListener('click', function() {
     const file = document.getElementById('file-input').files[0];
     if (file && file.type === 'application/pdf') {
         const fileReader = new FileReader();
         fileReader.onload = function() {
-            const typedarray = new Uint8Array(this.result);
-            pdfjsLib.getDocument({data: typedarray}).promise.then(function(pdfDoc_) {
-                pdfDoc = pdfDoc_;
-                renderPage(pageNum);
-            }).catch(function(error) {
-                console.log('Error during PDF loading: ', error);
-            });
+            const pdfData = this.result; 
+
+            fetch('/api/upload', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/pdf' 
+                },
+                body: pdfData
+            })
+            .then(response => response.json()) // Assuming processed data is JSON
+            .then(data => {
+                // Update the frontend based on the received data
+                // Example: Display the extracted text
+                document.getElementById('prompt-input').value = data.extractedText;
+            }) 
+            .catch(error => console.error('Error:', error)); 
         };
         fileReader.readAsArrayBuffer(file);
     } else {

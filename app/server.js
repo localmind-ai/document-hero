@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require('multer');
 const axios = require('axios');
 require('dotenv').config();
 
@@ -7,6 +8,17 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.static('app'));
+
+const upload = multer({ storage: multer.memoryStorage() });
+
+// Hypothetical PDF processing function
+function processPDF(pdfBuffer) {
+    // TODO: Replace with more sophisticated PDF processing logic
+    // Example: Extract text from the PDF
+    const processedData = extractTextFromPDF(pdfBuffer);
+    return processedData;
+}
+
 
 app.post('/api/ask', async (req, res) => {
     const userPrompt = req.body.prompt;
@@ -29,6 +41,19 @@ app.post('/api/ask', async (req, res) => {
     } catch (error) {
         console.error('Error:', error.message);
         res.status(500).json({ message: error.message });
+    }
+});
+
+app.post('/api/upload', upload.single('pdfFile'), async (req, res) => {
+    const pdfBuffer = req.file.buffer;
+
+    try {
+        const processedData = await processPDF(pdfBuffer);
+        res.json(processedData); // Send the processed data to the frontend 
+
+    } catch (error) {
+        console.error('Error:', error.message);
+        res.status(500).json({ message: "Error processing PDF" }); 
     }
 });
 
